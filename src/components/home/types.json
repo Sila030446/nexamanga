@@ -1,0 +1,143 @@
+[
+  {
+    "id": 5,
+    "title": "Bones โบนส์",
+    "alternativeTitle": " Bones, 본즈",
+    "slug": "bones-",
+    "description": "เรื่องย่อ Bones โบนส์ มังงะแปลไทย จิฮยอง คัง พยายามเป็นนักล่าเพื่อช่วยแม่ของเขา อย่างไรก็ตาม พวกอันธพาลในโรงเรียนที่โหดเหี้ยมทำร้ายแม่ของเธอ ทำให้เธอกลายเป็นพืชพรรณ ดังนั้นตัวเอกของเราจึงเริ่มภารกิจเพื่อแก้แค้น แต่ก็พ่ายแพ้อย่างสมบูรณ์และถูกทิ้งให้ตาย… หลังจากสูญเสียทุกอย่าง เขาก็กลายเป็นปีศาจและเริ่มตามล่าเพื่อแก้แค้น",
+    "coverImageUrl": "https://nexamanga-files.s3.ap-southeast-1.amazonaws.com/Bones โบนส์/cover/75f1a9ab-a072-4abd-8aad-e8888d71b97c.jpg",
+    "releaseDate": "2024-10-13T10:55:45.205Z",
+    "serialization": "Naver Best Challenge (Naver)",
+    "viewCount": 0,
+    "status": "ONGOING",
+    "createdAt": "2024-10-13T10:55:45.209Z",
+    "updatedAt": "2024-10-13T10:55:45.209Z",
+    "type": [
+      {
+        "id": 1,
+        "name": "Manhwa",
+        "slug": "manhwa",
+        "createdAt": "2024-10-02T02:59:16.682Z",
+        "updatedAt": "2024-10-02T02:59:16.682Z"
+      }
+    ],
+    "chapters": [
+      {
+        "id": 188,
+        "mangaManhwaId": 5,
+        "chapterNumber": 4,
+        "urlScrape": "https://www.go-manga.com/bones-%e0%b8%95%e0%b8%ad%e0%b8%99%e0%b8%97%e0%b8%b5%e0%b9%88-4/",
+        "title": "ตอนที่ 4",
+        "slug": "bones--4",
+        "releaseDate": null,
+        "createdAt": "2024-10-13T10:55:45.209Z",
+        "updatedAt": "2024-10-13T10:55:45.209Z"
+      },
+      {
+        "id": 187,
+        "mangaManhwaId": 5,
+        "chapterNumber": 3,
+        "urlScrape": "https://www.go-manga.com/bones-%e0%b8%95%e0%b8%ad%e0%b8%99%e0%b8%97%e0%b8%b5%e0%b9%88-3/",
+        "title": "ตอนที่ 3",
+        "slug": "bones--3",
+        "releaseDate": null,
+        "createdAt": "2024-10-13T10:55:45.209Z",
+        "updatedAt": "2024-10-13T10:55:45.209Z"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Special Civil Servant กองกำลังพิเศษหมอกสีเหลือง",
+    "alternativeTitle": " กองกำลังพิเศษหมอกสีเหลือง, Special Civil Servant, 特聘公務員, 별정직 공무원",
+    "slug": "special-civil-servant-",
+    "description": "เรื่องย่อ Special Civil Servant กองกำลังพิเศษหมอกสีเหลือง มังงะแปลไทย หลังจากสอบราชการเกรด 9 ตกสี่ครั้งและพลิกผันหลายครั้ง ในที่สุด Han Maru ก็ประสบความสำเร็จในการเป็นข้าราชการพิเศษภายใต้กระทรวงสิ่งแวดล้อม ลาก่อนโกซีวอน! ลาก่อนกล่องข้าวร้านสะดวกซื้อ! แต่ความสุขจากการจากไปนั้นอยู่ได้ไม่นาน กลายเป็นงานลับระดับชาติอันตรายถึงชีวิต?! พร้อมกับฝุ่นสีเหลืองก็มาพร้อมกับปีศาจ สิ่งมีชีวิตที่ฆ่าและกินมนุษย์ งานข้าราชการพิเศษเกรด 9 เกี่ยวข้องกับการทำสงครามกับปีศาจเหล่านี้! อาชีพรับราชการที่คุกคามชีวิตของฮันมารุเริ่มต้นขึ้น",
+    "coverImageUrl": "https://nexamanga-files.s3.ap-southeast-1.amazonaws.com/Special Civil Servant กองกำลังพิเศษหมอกสีเหลือง/cover/39b99cad-6ada-4cbb-a02c-0db04dd1e848.jpg",
+    "releaseDate": "2024-10-13T10:53:39.637Z",
+    "serialization": "Naver Webtoon (Naver)Naver Series (Naver)",
+    "viewCount": 0,
+    "status": "ONGOING",
+    "createdAt": "2024-10-13T10:53:39.647Z",
+    "updatedAt": "2024-10-13T10:53:39.647Z",
+    "type": [
+      {
+        "id": 1,
+        "name": "Manhwa",
+        "slug": "manhwa",
+        "createdAt": "2024-10-02T02:59:16.682Z",
+        "updatedAt": "2024-10-02T02:59:16.682Z"
+      }
+    ],
+    "chapters": [
+      {
+        "id": 184,
+        "mangaManhwaId": 4,
+        "chapterNumber": 21,
+        "urlScrape": "https://www.go-manga.com/special-civil-servant-%e0%b8%95%e0%b8%ad%e0%b8%99%e0%b8%97%e0%b8%b5%e0%b9%88-21/",
+        "title": "ตอนที่ 21",
+        "slug": "special-civil-servant--21",
+        "releaseDate": null,
+        "createdAt": "2024-10-13T10:53:39.647Z",
+        "updatedAt": "2024-10-13T10:53:39.647Z"
+      },
+      {
+        "id": 183,
+        "mangaManhwaId": 4,
+        "chapterNumber": 20,
+        "urlScrape": "https://www.go-manga.com/special-civil-servant-%e0%b8%95%e0%b8%ad%e0%b8%99%e0%b8%97%e0%b8%b5%e0%b9%88-20/",
+        "title": "ตอนที่ 20",
+        "slug": "special-civil-servant--20",
+        "releaseDate": null,
+        "createdAt": "2024-10-13T10:53:39.647Z",
+        "updatedAt": "2024-10-13T10:53:39.647Z"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Infinite Mage",
+    "alternativeTitle": " The Infinite Mage, Infinite Mage, Infinite Wizard, 无限魔法师, 無限の魔法使い, 無限魔法師, 무한의 마법사",
+    "slug": "infinite-mage",
+    "description": "เรื่องย่อ Infinite Mage มังงะแปลไทย นี่คือเรื่องราวของเด็กชายคนหนึ่งที่ฝันถึงความเป็นมนุษย์ที่ไม่มีวันสิ้นสุด! ชิโรเนะถูกพบทิ้งในคอกม้า เป็นลูกชายของนักล่า และชาวนามาโดยตลอด แม้จะมีความยากลำบาก แต่เขาก็เป็นอัจฉริยะที่สามารถเรียนรู้ที่จะอ่านด้วยตัวเองและหมกมุ่นอยู่กับมัน เต็มไปด้วยพรสวรรค์อัจฉริยะ เขาไปที่เมืองกับพ่อของเขา ซึ่งเขาได้เรียนรู้เกี่ยวกับเวทมนตร์ เริ่มต้นการเดินทางของเขาในฐานะดาวรุ่งพุ่งแรง!",
+    "coverImageUrl": "https://nexamanga-files.s3.ap-southeast-1.amazonaws.com/Infinite Mage/cover/20b75773-0cb1-42b1-b1e7-0f058ca3efce.jpg",
+    "releaseDate": "2024-10-13T11:00:17.166Z",
+    "serialization": "KakaoPage (Kakao)Kakao Webtoon (Kakao)",
+    "viewCount": 5,
+    "status": "ONGOING",
+    "createdAt": "2024-10-13T11:00:17.172Z",
+    "updatedAt": "2024-10-13T11:02:05.062Z",
+    "type": [
+      {
+        "id": 1,
+        "name": "Manhwa",
+        "slug": "manhwa",
+        "createdAt": "2024-10-02T02:59:16.682Z",
+        "updatedAt": "2024-10-02T02:59:16.682Z"
+      }
+    ],
+    "chapters": [
+      {
+        "id": 275,
+        "mangaManhwaId": 6,
+        "chapterNumber": 87,
+        "urlScrape": "https://www.go-manga.com/infinite-mage-%e0%b8%95%e0%b8%ad%e0%b8%99%e0%b8%97%e0%b8%b5%e0%b9%88-87/",
+        "title": "ตอนที่ 87",
+        "slug": "infinite-mage-87",
+        "releaseDate": null,
+        "createdAt": "2024-10-13T11:00:17.172Z",
+        "updatedAt": "2024-10-13T11:00:17.172Z"
+      },
+      {
+        "id": 274,
+        "mangaManhwaId": 6,
+        "chapterNumber": 86,
+        "urlScrape": "https://www.go-manga.com/infinite-mage-%e0%b8%95%e0%b8%ad%e0%b8%99%e0%b8%97%e0%b8%b5%e0%b9%88-86/",
+        "title": "ตอนที่ 86",
+        "slug": "infinite-mage-86",
+        "releaseDate": null,
+        "createdAt": "2024-10-13T11:00:17.172Z",
+        "updatedAt": "2024-10-13T11:00:17.172Z"
+      }
+    ]
+  }
+]

@@ -1,0 +1,10 @@
+services:
+  nextjs-app:
+    build: .
+    container_name: nextjs-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000" # ใช้พอร์ตนี้ภายใน container เท่านั้น
+    environment:
+      - NODE_ENV=production
+      # Add any other environment variables needed for your app
