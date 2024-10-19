@@ -3,6 +3,7 @@ import "./globals.css";
 import Provider from "./provider";
 import Authenticated from "./(auth)/authenticated";
 import { Kanit } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "Nexamanga อ่าน Manga ออนไลน์",
@@ -24,6 +25,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`antialiased ${kanit.className}`}>
+        <Analytics />
         <Provider authenticated={isAuthenticated}>{children}</Provider>
       </body>
     </html>
