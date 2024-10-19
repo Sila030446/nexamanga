@@ -1,10 +1,23 @@
 services:
   nextjs-app:
-    build: .
+    image: nexamanga.azurecr.io/nexamaga:v1.0
     container_name: nextjs-app
     restart: unless-stopped
     ports:
-      - "3000:3000" # ใช้พอร์ตนี้ภายใน container เท่านั้น
+      - "3000:3000"
     environment:
       - NODE_ENV=production
-      # Add any other environment variables needed for your app
+      - API_URL=https:api.nexamanga.online
+    networks:
+      - app-network
+    volumes:
+      - ./nextjs-logs:/app/logs # Optional: To persist logs
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  app-network:
+    driver: bridge

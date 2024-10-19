@@ -15,9 +15,10 @@ const UpdateManga = async ({
   const page = parseInt(searchParams?.page || "1", 10); // Default to page 1
   // Default to limit of 12 per page
 
-  const { mangas }: { mangas: UpdateMangaTypes[] } = await getUpdateManga({
-    page,
-  });
+  const { mangas }: { mangas: UpdateMangaTypes[] | null } =
+    await getUpdateManga({
+      page,
+    });
 
   if (!mangas || mangas.length === 0) {
     return <div>No data</div>;

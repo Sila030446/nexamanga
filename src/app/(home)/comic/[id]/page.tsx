@@ -16,12 +16,13 @@ import {
 } from "@/components/ui/breadcrumb";
 import BookmarkButton from "@/components/ui/custom/BookmarkButton";
 import { SlashIcon } from "@radix-ui/react-icons";
+import { redirect } from "next/navigation";
 
 const ComicPage = async ({ params }: { params: { id: string } }) => {
   const manga: MangaManhwa | null = await getComicDetails(params.id);
 
   if (!manga) {
-    return <p>Comic not found.</p>;
+    return redirect("/404_not_found");
   }
 
   return (

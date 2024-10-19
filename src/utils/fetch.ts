@@ -48,6 +48,7 @@ export const get = async (path: string) => {
     const res = await fetch(`${API_URL}/${path}`, {
       headers: { ...getHeaders() },
     });
+
     return res.json();
   } catch (err) {
     console.log(err);

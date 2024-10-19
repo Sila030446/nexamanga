@@ -10,9 +10,9 @@ import Divider from "@/components/ui/divider";
 import { Anton, Noto_Sans_Thai } from "next/font/google";
 import Link from "next/link";
 import React from "react";
-import { FaGoogle } from "react-icons/fa";
 import Authenticated from "../authenticated";
 import { redirect } from "next/navigation";
+import GoogleLoginButton from "./googleLoginButton";
 
 const anton = Anton({ subsets: ["latin"], weight: ["400"] });
 const noto = Noto_Sans_Thai({
@@ -59,16 +59,7 @@ const LoginPage = () => {
         <CardContent className="w-full p-0 flex flex-col gap-4">
           <LoginForm />
           <Divider title="หรือ" />
-          <Link href={"http://localhost:8888/auth/google"}>
-            <Button
-              className="w-full bg-red-500 text-white px-4 text-base transition-all duration-300 ease-in-out transform hover:bg-red-600 hover:scale-105 active:scale-95"
-              type="button"
-              size={"lg"}
-            >
-              <FaGoogle className="mr-2 h-5 w-5" />
-              สมัคร / เข้าสู่ระบบด้วย Google
-            </Button>
-          </Link>
+          <GoogleLoginButton />
         </CardContent>
         <CardFooter className="w-full p-0 flex items-center justify-between">
           <Link href={"/forgot-password"}>

@@ -23,7 +23,7 @@ export async function middleware(request: NextRequest) {
   if (!Authenticated() && refreshToken) {
     const refreshRes = await fetch(`${API_URL}/auth/refresh`, {
       headers: {
-        Cookie: `${REFRESH_TOKEN_COOKIE}=${refreshToken}`,
+        Cookie: cookies().toString(),
       },
       method: "POST",
     });
