@@ -28,7 +28,7 @@ export default async function RootLayout({
       <body className={`antialiased ${kanit.className}`}>
         <Analytics />
         <Provider authenticated={isAuthenticated}>
-          <NextTopLoader />
+          <NextTopLoader color="red" showSpinner={false} />
           {children}
         </Provider>
       </body>
