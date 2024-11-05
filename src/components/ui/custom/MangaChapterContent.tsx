@@ -31,8 +31,9 @@ const MangaChapterContent: React.FC<MangaChapterContentProps> = ({
                     alt={`Page ${page.pageNumber}`}
                     width={896}
                     height={1000}
-                    quality={100}
-                    loading="lazy"
+                    quality={90}   
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    loading="lazy"            
                     className="w-full h-full object-cover"
                   />
                 </div>

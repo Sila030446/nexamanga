@@ -24,7 +24,6 @@ export const getAuthCookie = (response: Response) => {
       value: accessToken,
       secure: true,
       httpOnly: true,
-
       expires: new Date(jwtDecode(accessToken).exp! * 1000),
     },
     refreshToken: refreshToken && {

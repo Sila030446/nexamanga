@@ -26,7 +26,7 @@ export default async function login(_prevState: any, formData: FormData) {
   redirect("/");
 }
 
-const setAuthCookie = (response: Response) => {
+export const setAuthCookie = (response: Response) => {
   const setCookieHeader = response.headers.get("Set-Cookie");
   if (setCookieHeader) {
     const token = setCookieHeader.split(";")[0].split("=")[1];
@@ -35,6 +35,8 @@ const setAuthCookie = (response: Response) => {
       value: token,
       secure: true,
       httpOnly: true,
+      sameSite: "none",
+      path: "/",
       expires: new Date(jwtDecode(token).exp! * 1000),
     });
     cookies().set({
@@ -42,6 +44,8 @@ const setAuthCookie = (response: Response) => {
       value: token,
       secure: true,
       httpOnly: true,
+      sameSite: "none",
+      path: "/",
       expires: new Date(jwtDecode(token).exp! * 1000),
     });
   }
