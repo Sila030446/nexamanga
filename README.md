@@ -19,7 +19,7 @@ A modern manga reader web application built with Next.js, offering a seamless re
 - [TypeScript](https://www.typescriptlang.org/) - Type safety
 - [Tailwind CSS](https://tailwindcss.com/) - Styling
 - [SWR](https://swr.vercel.app/) - Data fetching
-- [Framer Motion](https://www.framer.com/motion/) - Animations
+- [Shadcn/ui](https://ui.shadcn.com/) - UI components
 
 ## Prerequisites
 
@@ -61,7 +61,7 @@ The application will be available at `http://localhost:3000`
 ```
 frontend/
 ├── components/         # Reusable UI components
-├── pages/             # Next.js pages and API routes
+├── app/             # Next.js pages and API routes
 ├── public/            # Static assets
 ├── styles/            # Global styles and Tailwind config
 ├── lib/              # Utility functions and helpers
