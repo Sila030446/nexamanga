@@ -1,5 +1,5 @@
 import React from "react";
-import { Metadata } from 'next';
+import { Metadata } from "next";
 import { getMangaChapterDetails } from "./getMangaChapterDetails";
 import { MangaChapter } from "@/types/mangaChapter.type";
 import HeaderMenu from "@/components/ui/custom/HeaderMenuContent";
@@ -15,9 +15,9 @@ interface PageProps {
 }
 
 // Generate dynamic metadata
-export async function generateMetadata(
-  { params }: PageProps,
-): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const id = params.id;
   const data: MangaChapter | null = await getMangaChapterDetails(id);
 
@@ -39,8 +39,10 @@ export async function generateMetadata(
   const { title: mangaTitle, description } = mangaManhwa;
 
   // Construct full title and description with fallback for description
-  const fullTitle = `${chapterTitle} - ${mangaTitle}`;
-  const fullDescription = `Read ${chapterTitle} of ${mangaTitle}. ${description?.slice(0, 150) || ''}...`;
+  const fullTitle = `${mangaTitle} - ${chapterTitle}`;
+  const fullDescription = `อ่าน ${chapterTitle} ของ ${mangaTitle}. ${
+    description?.slice(0, 150) || ""
+  }...`;
 
   // Construct canonical URL
   const canonical = `https://nexamanga.online/comic/chapter/${id}`;
@@ -55,11 +57,12 @@ export async function generateMetadata(
       title: fullTitle,
       description: fullDescription,
       url: canonical,
-      siteName: 'nexamanga',
-      type: 'article',
+      siteName: "nexamanga",
+      type: "article",
       images: [
         {
-          url: currentChapter.pages?.[0]?.imageUrl || '/default-manga-cover.jpg',
+          url:
+            currentChapter.pages?.[0]?.imageUrl || "/default-manga-cover.jpg",
           width: 1200,
           height: 630,
           alt: `Cover image for ${mangaTitle}`,
@@ -67,10 +70,12 @@ export async function generateMetadata(
       ],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: fullTitle,
       description: fullDescription,
-      images: [currentChapter.pages?.[0]?.imageUrl || '/default-manga-cover.jpg'],
+      images: [
+        currentChapter.pages?.[0]?.imageUrl || "/default-manga-cover.jpg",
+      ],
     },
     robots: {
       index: true,
@@ -78,9 +83,9 @@ export async function generateMetadata(
       googleBot: {
         index: true,
         follow: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
       },
     },
   };
@@ -89,23 +94,23 @@ export async function generateMetadata(
 // JSON-LD Schema Component
 const MangaChapterSchema = ({ data }: { data: MangaChapter }) => {
   const schemaData = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    "@context": "https://schema.org",
+    "@type": "Article",
     headline: `${data.currentChapter?.title} - ${data.currentChapter?.mangaManhwa?.title}`,
-    description: data.currentChapter?.mangaManhwa?.description || '',
+    description: data.currentChapter?.mangaManhwa?.description || "",
     datePublished: data.currentChapter?.createdAt,
     dateModified: data.currentChapter?.updatedAt,
     author: {
-      '@type': 'Organization',
-      name: 'Nexamanga',
+      "@type": "Organization",
+      name: "Nexamanga",
     },
     publisher: {
-      '@type': 'Organization',
-      name: 'Nexamanga',
+      "@type": "Organization",
+      name: "Nexamanga",
     },
     mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `https://nexamanga.online/comic/chapter/${data.currentChapter?.id}`,
+      "@type": "WebPage",
+      "@id": `https://nexamanga.online/comic/chapter/${data.currentChapter?.id}`,
     },
   };
 

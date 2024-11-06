@@ -20,7 +20,11 @@ import { SlashIcon } from "@radix-ui/react-icons";
 import { redirect } from "next/navigation";
 import { Metadata } from "next";
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
   const manga = await getComicDetails(params.id);
 
   if (!manga) {
@@ -30,12 +34,22 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     };
   }
 
-  const genres = manga.genres?.map((genre: Author) => genre.name).join(", ") || "";
+  const genres =
+    manga.genres?.map((genre: Author) => genre.name).join(", ") || "";
 
   return {
     title: `${manga.title} - อ่านการ์ตูนออนไลน์`,
-    description: manga.description?.slice(0, 160) || `อ่าน ${manga.title} ออนไลน์ฟรี อัพเดทตอนใหม่ล่าสุด`,
-    keywords: [manga.title, manga.alternativeTitle, ...manga.genres?.map((g: Author) => g.name) || [], "มังงะ", "การ์ตูน", "อ่านการ์ตูน"],
+    description:
+      manga?.description ||
+      `อ่าน ${manga.title} ออนไลน์ฟรี อัพเดทตอนใหม่ล่าสุด`,
+    keywords: [
+      manga.title,
+      manga.alternativeTitle,
+      ...(manga.genres?.map((g: Author) => g.name) || []),
+      "มังงะ",
+      "การ์ตูน",
+      "อ่านการ์ตูน",
+    ],
     openGraph: {
       title: manga.title,
       description: manga.description?.slice(0, 160),
@@ -70,7 +84,10 @@ const ComicPage = async ({ params }: { params: { id: string } }) => {
     image: manga.coverImageUrl,
     description: manga.description,
     author: Array.isArray(manga.authors)
-      ? manga.authors.map((author: Author) => ({ "@type": "Person", name: author.name }))
+      ? manga.authors.map((author: Author) => ({
+          "@type": "Person",
+          name: author.name,
+        }))
       : { "@type": "Person", name: manga.authors || "Unknown" },
     publisher: { "@type": "Organization", name: "Nexamanga" },
     genre: manga.genres?.map((genre) => genre.name).join(", ") || "",

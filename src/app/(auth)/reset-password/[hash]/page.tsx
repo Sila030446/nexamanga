@@ -1,4 +1,4 @@
-import LoginForm from "@/components/auth/loginForm";
+import ResetPasswordForm from "@/components/auth/resetPasswordForm";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -6,13 +6,9 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import Divider from "@/components/ui/divider";
 import { Anton, Noto_Sans_Thai } from "next/font/google";
 import Link from "next/link";
 import React from "react";
-import Authenticated from "../authenticated";
-import { redirect } from "next/navigation";
-import GoogleLoginButton from "./googleLoginButton";
 
 // Fonts
 const anton = Anton({ subsets: ["latin"], weight: ["400"] });
@@ -24,31 +20,23 @@ const noto = Noto_Sans_Thai({
 // Metadata function for Next.js
 export function generateMetadata() {
   return {
-    title: "เข้าสู่ระบบ",
-    description:
-      "เข้าสู่ระบบด้วยบัญชี Nexamanga ของคุณเพื่อเริ่มต้นการอ่านมังงะ.",
+    title: "เปลี่ยนรหัสผ่าน",
+    description: "กรุณากรอกอีเมลของคุณเพื่อรับลิงก์การตั้งรหัสผ่านใหม่.",
     openGraph: {
-      title: "เข้าสู่ระบบ - Nexamanga",
-      description:
-        "เข้าสู่ระบบด้วยบัญชี Nexamanga ของคุณเพื่อเริ่มต้นการอ่านมังงะ.",
-      url: "/login",
+      title: "เปลี่ยนรหัสผ่าน - Nexamanga",
+      description: "กรุณากรอกอีเมลของคุณเพื่อรับลิงก์การตั้งรหัสผ่านใหม่.",
+      url: "/forgot-password",
       siteName: "Nexamanga",
     },
     twitter: {
       card: "summary_large_image",
-      title: "เข้าสู่ระบบ - Nexamanga",
-      description:
-        "เข้าสู่ระบบด้วยบัญชี Nexamanga ของคุณเพื่อเริ่มต้นการอ่านมังงะ.",
+      title: "เปลี่ยนรหัสผ่าน - Nexamanga",
+      description: "กรุณากรอกอีเมลของคุณเพื่อรับลิงก์การตั้งรหัสผ่านใหม่.",
     },
   };
 }
 
-const LoginPage = () => {
-  const authenticate = Authenticated();
-  if (authenticate) {
-    return redirect("/");
-  }
-
+const ResetPasswordPage = ({ params }: { params: { hash: string } }) => {
   return (
     <div
       className={`w-full h-screen flex items-center justify-center ${noto.className}`}
@@ -75,24 +63,17 @@ const LoginPage = () => {
             </Link>
             <div className="h-[1px] w-full bg-muted-foreground"></div>
             <p className="font-semibold text-lg text-muted-foreground">
-              เข้าสู่ระบบด้วยสมาชิก Nexamanga
+              เปลี่ยนรหัสผ่าน
             </p>
           </div>
         </CardHeader>
         <CardContent className="w-full p-0 flex flex-col gap-4">
-          <LoginForm />
-          <Divider title="หรือ" />
-          <GoogleLoginButton />
+          <ResetPasswordForm hash={params.hash} />
         </CardContent>
         <CardFooter className="w-full p-0 flex items-center justify-between">
-          <Link href={"/forgot-password"}>
+          <Link href={"/login"}>
             <Button variant={"link"} className="flex items-center ">
-              ลืมรหัสผ่าน?
-            </Button>
-          </Link>
-          <Link href={"/register"}>
-            <Button variant={"link"} className="flex items-center ">
-              สมัครสมาชิก
+              ล็อกอิน
             </Button>
           </Link>
         </CardFooter>
@@ -101,4 +82,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default ResetPasswordPage;

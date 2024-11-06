@@ -9,15 +9,17 @@ interface ProviderProps {
 
 export default function Provider({ children, authenticated }: ProviderProps) {
   return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="light"
-      enableSystem
-      disableTransitionOnChange
-    >
-      <AuthContext.Provider value={authenticated}>
-        {children}
-      </AuthContext.Provider>
-    </ThemeProvider>
+    <>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="light"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <AuthContext.Provider value={authenticated}>
+          {children}
+        </AuthContext.Provider>
+      </ThemeProvider>
+    </>
   );
 }

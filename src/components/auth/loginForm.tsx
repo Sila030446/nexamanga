@@ -1,10 +1,11 @@
 "use client";
-import { FaKey, FaUser } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import login from "@/app/(auth)/login/login";
 import { useFormState } from "react-dom";
 import { Alert } from "../ui/alert";
+import { PasswordInput } from "../ui/custom/PasswordInput";
 
 const LoginForm = () => {
   const [state, formAction] = useFormState(login, { error: "" });
@@ -20,15 +21,11 @@ const LoginForm = () => {
           name="email"
         />
       </div>
-      <div className="w-full h-12 relative">
-        <FaKey className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400" />
-        <Input
-          className="w-full h-full pl-10 pr-4 py-2 text-md"
-          type="password"
-          placeholder="รหัสผ่าน"
-          name="password"
-        />
-      </div>
+      <PasswordInput
+        className="w-full h-12"
+        name="password"
+        placeholder="รหัสผ่าน"
+      />
       {state?.error && (
         <Alert className="w-full" variant="destructive" title="เกิดข้อผิดพลาด">
           เกิดข้อผิดพลาดเนื่องจาก {state?.error}

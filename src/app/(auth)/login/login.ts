@@ -10,7 +10,7 @@ import {
   REFRESH_TOKEN_COOKIE,
 } from "../contexts/auth-cookie";
 
-export default async function login(_prevState: any, formData: FormData) {
+export default async function login(_previous: any, formData: FormData) {
   const res = await fetch(`${API_URL}/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
