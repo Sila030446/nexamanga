@@ -34,6 +34,15 @@ export const SignupFormSchema = z.object({
     .trim(),
 });
 
+export const LoginFormSchema = z.object({
+  email: z
+    .string()
+    .email({ message: "โปรดใส่อีเมลที่ถูกต้อง" })
+    .toLowerCase()
+    .trim(),
+  password: z.string(),
+});
+
 export const ForgotPasswordSchema = z.object({
   email: z
     .string()
