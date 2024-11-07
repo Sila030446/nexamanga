@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/pagination";
 import { UpdateMangaTypes } from "@/types/updateManga.type";
 import { Separator } from "@radix-ui/react-dropdown-menu";
+import { notFound } from "next/navigation";
 import React from "react";
 
 interface CategoryTypeProps {
@@ -29,7 +30,7 @@ const CategoryType: React.FC<CategoryTypeProps> = async ({ params }) => {
   const totalPages = response.totalPages;
 
   if (mangas.length === 0) {
-    return <div>No mangas found</div>;
+    return notFound();
   }
 
   const generatePaginationLinks = () => {

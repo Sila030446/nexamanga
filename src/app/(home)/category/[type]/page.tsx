@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/pagination";
 import { UpdateMangaTypes } from "@/types/updateManga.type";
 import { Separator } from "@radix-ui/react-dropdown-menu";
+import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import React from "react";
 
@@ -18,6 +19,18 @@ interface CategoryTypeProps {
   params: {
     type: string;
     page: string;
+  };
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { type: string; page: string };
+}): Promise<Metadata> {
+  const fullName = `ประเภท - ${decodeURIComponent(params.type)}`;
+  return {
+    title: fullName,
+    description: `อ่านการ์ตูน ${fullName} ออนไลน์ฟรี อัพเดทตอนใหม่ล่าสุด`,
   };
 }
 
@@ -29,7 +42,6 @@ const CategoryType: React.FC<CategoryTypeProps> = async ({ params }) => {
   const mangas = response.mangas;
   const totalPages = response.totalPages;
 
-  console.log(mangas);
   if (mangas.length === 0) {
     redirect(`/`);
   }

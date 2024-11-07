@@ -11,12 +11,27 @@ import {
 } from "@/components/ui/pagination";
 import { UpdateMangaTypes } from "@/types/updateManga.type";
 import { Separator } from "@radix-ui/react-dropdown-menu";
+import { Metadata } from "next";
 import React from "react";
 
 interface CategoryTypeProps {
   params: {
     genres: string;
     page: string;
+  };
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { genres: string; page: string };
+}): Promise<Metadata> {
+  const fullName = `แนว - ${decodeURIComponent(params.genres)} | หน้า ${
+    params.page
+  }`;
+  return {
+    title: fullName,
+    description: `อ่านการ์ตูน ${fullName} ออนไลน์ฟรี อัพเดทตอนใหม่ล่าสุด`,
   };
 }
 

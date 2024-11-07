@@ -22,6 +22,8 @@ export const metadata: Metadata = {
     "manga",
     "manhwa",
     "manhua",
+    "อ่านมังงะ",
+    "อ่านมันฮวา",
     "อ่านการ์ตูน",
     "การ์ตูนออนไลน์",
     "มังงะแปลไทย",
@@ -59,7 +61,7 @@ export const metadata: Metadata = {
     siteName: "Nexamanga",
     images: [
       {
-        url: "https://nexamanga.online/og-image.jpg",
+        url: "https://nexamangafile.blob.core.windows.net/nexamanga-image/Nexamanga.png",
         width: 1200,
         height: 630,
         alt: "Nexamanga - อ่านการ์ตูนมังงะออนไลน์",
@@ -73,7 +75,9 @@ export const metadata: Metadata = {
     title: "Nexamanga - อ่านการ์ตูนมังงะออนไลน์ฟรี",
     description:
       "อ่านการ์ตูนมังงะออนไลน์ฟรี อัพเดทใหม่ทุกวัน รวมการ์ตูนดังจากญี่ปุ่น จีน เกาหลี",
-    images: ["https://nexamanga.online/twitter-image.jpg"],
+    images: [
+      "https://nexamangafile.blob.core.windows.net/nexamanga-image/Nexamanga.png",
+    ],
   },
   category: "entertainment",
 };

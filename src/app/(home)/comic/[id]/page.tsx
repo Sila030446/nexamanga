@@ -17,8 +17,9 @@ import {
 } from "@/components/ui/breadcrumb";
 import BookmarkButton from "@/components/ui/custom/BookmarkButton";
 import { SlashIcon } from "@radix-ui/react-icons";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { Metadata } from "next";
+import getUpdateManga from "@/action/getUpdateManga";
 
 export async function generateMetadata({
   params,
@@ -33,9 +34,6 @@ export async function generateMetadata({
       description: "The requested comic could not be found.",
     };
   }
-
-  const genres =
-    manga.genres?.map((genre: Author) => genre.name).join(", ") || "";
 
   return {
     title: `${manga.title} - อ่านการ์ตูนออนไลน์`,
@@ -72,8 +70,8 @@ export async function generateMetadata({
 const ComicPage = async ({ params }: { params: { id: string } }) => {
   const manga: MangaManhwa | null = await getComicDetails(params.id);
 
-  if (!manga) {
-    return redirect("/404_not_found");
+  if (manga === null) {
+    return notFound();
   }
 
   const jsonLd = {

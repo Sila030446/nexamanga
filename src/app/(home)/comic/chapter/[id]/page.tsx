@@ -7,6 +7,7 @@ import Breadcrumbs from "@/components/ui/custom/Breadcrumbs";
 import MangaChapterContent from "@/components/ui/custom/MangaChapterContent";
 import ToTopButton from "@/components/ui/custom/ToTopButton";
 import DisableDevTools from "@/components/ui/custom/DisableDevTools";
+import { notFound } from "next/navigation";
 
 interface PageProps {
   params: {
@@ -14,7 +15,6 @@ interface PageProps {
   };
 }
 
-// Generate dynamic metadata
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
@@ -22,7 +22,6 @@ export async function generateMetadata({
   const data: MangaChapter | null = await getMangaChapterDetails(id);
 
   if (!data || !data.currentChapter) {
-    // Handle the case where data is null or currentChapter is missing
     return {
       title: "Chapter Not Found",
       description: "The chapter you are looking for does not exist.",
@@ -33,18 +32,15 @@ export async function generateMetadata({
     };
   }
 
-  // Get the manga and chapter details
   const { currentChapter } = data;
   const { mangaManhwa, title: chapterTitle } = currentChapter;
   const { title: mangaTitle, description } = mangaManhwa;
 
-  // Construct full title and description with fallback for description
   const fullTitle = `${mangaTitle} - ${chapterTitle}`;
   const fullDescription = `อ่าน ${chapterTitle} ของ ${mangaTitle}. ${
     description?.slice(0, 150) || ""
   }...`;
 
-  // Construct canonical URL
   const canonical = `https://nexamanga.online/comic/chapter/${id}`;
 
   return {
@@ -91,7 +87,6 @@ export async function generateMetadata({
   };
 }
 
-// JSON-LD Schema Component
 const MangaChapterSchema = ({ data }: { data: MangaChapter }) => {
   const schemaData = {
     "@context": "https://schema.org",
@@ -127,7 +122,7 @@ const Page = async ({ params }: PageProps) => {
   const data: MangaChapter | null = await getMangaChapterDetails(id);
 
   if (!data || !data.currentChapter) {
-    return <div>Chapter not found.</div>; // Handle missing chapter case
+    return notFound();
   }
 
   const breadcrumbItems = [
