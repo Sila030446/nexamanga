@@ -1,16 +1,22 @@
-import { getAllGenres } from "@/action/getAllGenres";
 import { MetadataRoute } from "next";
+import { getAllGenres } from "@/action/getAllGenres";
+
+export const dynamic = "force-static";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const genres = await getAllGenres();
+  let genreEntries: MetadataRoute.Sitemap = [];
 
-  const genreEntries: MetadataRoute.Sitemap = genres.map(
-    (genre: { id: number; name: string; slug: string }) => ({
-      url: `${process.env.NEXT_PUBLIC_BASE_URL}/genre/${encodeURIComponent(
-        genre.name
-      )}`,
-    })
-  );
+  // Attempt to fetch genres and handle errors
+  try {
+    const genres = await getAllGenres();
+    genreEntries = genres.map(
+      (genre: { id: number; name: string; slug: string }) => ({
+        url: `${process.env.API_URL}/genre/${encodeURIComponent(genre.name)}`,
+      })
+    );
+  } catch (error) {
+    console.error("Error fetching genres data:", error);
+  }
 
   let mangaEntries: MetadataRoute.Sitemap = [];
   try {
@@ -19,6 +25,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       headers: {
         "Content-Type": "application/json",
       },
+      cache: "no-store", // Prevent caching to get fresh data
     });
     const mangaData = await response.json();
     mangaEntries = mangaData.map((manga: { id: number }) => ({
@@ -37,6 +44,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         headers: {
           "Content-Type": "application/json",
         },
+        cache: "no-store", // Prevent caching to get fresh data
       }
     );
     const allChaptersSlugData = await allChaptersSlug.json();
