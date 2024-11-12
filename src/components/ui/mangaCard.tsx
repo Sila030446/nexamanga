@@ -50,9 +50,7 @@ const MangaCard: React.FC<MangaCardProps> = ({ manga }) => {
             <Image
               src={manga.coverImageUrl}
               alt={manga.title}
-              width={300}
-              height={320}
-              priority
+              unoptimized
               className="w-full h-full object-cover hover:scale-105 transition-all"
             />
           </Link>
