@@ -16,7 +16,7 @@ jobs:
     
     # สร้าง Docker Image
     - name: สร้าง Docker Image
-      run: docker build -t nexamanga-app .
+      run: docker build -t sila030446/nexamanga .
       
     # เข้าสู่ Docker Registry (เช่น Docker Hub, GitHub Container Registry)
     - name: เข้าสู่ Docker Registry
