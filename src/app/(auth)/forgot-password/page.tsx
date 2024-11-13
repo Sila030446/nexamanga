@@ -1,4 +1,4 @@
-import ForgotPasswordForm from "@/components/auth/forgotPasswordForm";
+import { ForgotPasswordForm } from "@/components/auth/forgotPasswordForm";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,11 +10,32 @@ import { Anton, Noto_Sans_Thai } from "next/font/google";
 import Link from "next/link";
 import React from "react";
 
+// Fonts
 const anton = Anton({ subsets: ["latin"], weight: ["400"] });
 const noto = Noto_Sans_Thai({
   subsets: ["latin"],
   weight: ["400", "700", "900"],
 });
+
+// Metadata function for Next.js
+export function generateMetadata() {
+  return {
+    title: "ลืมรหัสผ่าน",
+    description: "กรุณากรอกอีเมลของคุณเพื่อรับลิงก์การตั้งรหัสผ่านใหม่.",
+    openGraph: {
+      title: "ลืมรหัสผ่าน - Nexamanga",
+      description: "กรุณากรอกอีเมลของคุณเพื่อรับลิงก์การตั้งรหัสผ่านใหม่.",
+      url: "/forgot-password",
+      siteName: "Nexamanga",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "ลืมรหัสผ่าน - Nexamanga",
+      description: "กรุณากรอกอีเมลของคุณเพื่อรับลิงก์การตั้งรหัสผ่านใหม่.",
+    },
+  };
+}
+
 const ForgotPasswordPage = () => {
   return (
     <div

@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 import { getComicDetails } from "./getComicDetails";
-import { MangaManhwa } from "../types/comicDetail.type";
+import { Author, MangaManhwa } from "../types/comicDetail.type";
 import Image from "next/image";
 import Link from "next/link";
 import { GoListUnordered } from "react-icons/go";
@@ -16,17 +17,95 @@ import {
 } from "@/components/ui/breadcrumb";
 import BookmarkButton from "@/components/ui/custom/BookmarkButton";
 import { SlashIcon } from "@radix-ui/react-icons";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { Metadata } from "next";
+import getUpdateManga from "@/action/getUpdateManga";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const manga = await getComicDetails(params.id);
+
+  if (!manga) {
+    return {
+      title: "Comic Not Found",
+      description: "The requested comic could not be found.",
+    };
+  }
+
+  return {
+    title: `${manga.title} - อ่านการ์ตูนออนไลน์`,
+    description:
+      manga?.description ||
+      `อ่าน ${manga.title} ออนไลน์ฟรี อัพเดทตอนใหม่ล่าสุด`,
+    keywords: [
+      manga.title,
+      manga.alternativeTitle,
+      ...(manga.genres?.map((g: Author) => g.name) || []),
+      "มังงะ",
+      "การ์ตูน",
+      "อ่านการ์ตูน",
+    ],
+    openGraph: {
+      title: manga.title,
+      description: manga.description?.slice(0, 160),
+      images: [
+        {
+          url: manga.coverImageUrl,
+          width: 1200,
+          height: 630,
+          alt: manga.title,
+        },
+      ],
+      type: "article",
+    },
+    alternates: {
+      canonical: `https://nexamanga.online/comic/${manga.id}`,
+    },
+  };
+}
 
 const ComicPage = async ({ params }: { params: { id: string } }) => {
   const manga: MangaManhwa | null = await getComicDetails(params.id);
 
-  if (!manga) {
-    return redirect("/404_not_found");
+  if (manga === null) {
+    return notFound();
   }
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    name: manga.title,
+    alternateName: manga.alternativeTitle,
+    image: manga.coverImageUrl,
+    description: manga.description,
+    author: Array.isArray(manga.authors)
+      ? manga.authors.map((author: Author) => ({
+          "@type": "Person",
+          name: author.name,
+        }))
+      : { "@type": "Person", name: manga.authors || "Unknown" },
+    publisher: { "@type": "Organization", name: "Nexamanga" },
+    genre: manga.genres?.map((genre) => genre.name).join(", ") || "",
+    datePublished: manga.chapters?.[manga.chapters.length - 1]?.createdAt || "",
+    dateModified: manga.chapters?.[0]?.createdAt || "",
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: manga.avgRating || 0,
+      ratingCount: manga.ratings?.length || 0,
+      bestRating: "5",
+      worstRating: "1",
+    },
+  };
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <section className="flex flex-col gap-4 mt-2">
         <div>
           <Breadcrumb>
@@ -166,19 +245,16 @@ const ComicPage = async ({ params }: { params: { id: string } }) => {
             <Link
               key={chapter.id}
               href={`/comic/chapter/${chapter.slug}`}
-              className="w-full"
+              className="text-sm md:text-base"
             >
               <Button
                 variant={"outline"}
-                className="w-full h-full flex flex-col justify-start items-start"
+                size="lg"
+                className="w-full justify-between"
               >
-                <span className="flex-1">{chapter.title}</span>
-                <span className="flex-none text-sm text-muted-foreground">
-                  {new Date(chapter.createdAt).toLocaleDateString("en-US", {
-                    month: "2-digit",
-                    day: "2-digit",
-                    year: "numeric",
-                  })}
+                {chapter.title}
+                <span className="text-xs md:text-sm text-muted-foreground">
+                  {new Date(chapter.createdAt).toLocaleDateString("th-TH")}
                 </span>
               </Button>
             </Link>

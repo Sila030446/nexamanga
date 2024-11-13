@@ -1,32 +1,61 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
-import API_URL from "@/common/constants/api";
-import { getErrorMessage } from "@/utils/error";
+
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import { jwtDecode } from "jwt-decode";
+import API_URL from "@/common/constants/api";
+import { FormState, LoginFormSchema } from "@/lib/type";
 import {
   AUTHENTICATION_COOKIE,
   REFRESH_TOKEN_COOKIE,
 } from "../contexts/auth-cookie";
 
-export default async function login(_prevState: any, formData: FormData) {
-  const res = await fetch(`${API_URL}/auth/login`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(Object.fromEntries(formData)),
+export async function login(prevState: FormState, formData: FormData) {
+  // 1. Validate form data
+  const validationResult = LoginFormSchema.safeParse({
+    email: formData.get("email"),
+    password: formData.get("password"),
   });
 
-  const parsedRes = res;
-  if (!res.ok) {
-    return { error: getErrorMessage(parsedRes) };
+  // 2. Return validation errors if any
+  if (!validationResult.success) {
+    const formatted = validationResult.error.format();
+    return {
+      error: {
+        email: formatted.email?._errors,
+        password: formatted.password?._errors,
+      },
+    } as FormState;
   }
 
-  setAuthCookie(res);
-  redirect("/");
+  // 3. Make API request
+  try {
+    const res = await fetch(`${API_URL}/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(validationResult.data),
+    });
+
+    if (!res.ok) {
+      return {
+        message:
+          res.status === 401 || res.status === 404
+            ? "อีเมลนี้หรือรหัสผ่านไม่ถูกต้อง"
+            : "เกิดข้อผิดพลาดในการเข้าสู่ระบบ",
+      } as FormState;
+    }
+
+    // 4. Set cookies on successful login
+    setAuthCookie(res);
+    return { success: true } as FormState;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (error) {
+    return {
+      message: "ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้",
+    } as FormState;
+  }
 }
 
-const setAuthCookie = (response: Response) => {
+export const setAuthCookie = (response: Response) => {
   const setCookieHeader = response.headers.get("Set-Cookie");
   if (setCookieHeader) {
     const token = setCookieHeader.split(";")[0].split("=")[1];
@@ -35,6 +64,8 @@ const setAuthCookie = (response: Response) => {
       value: token,
       secure: true,
       httpOnly: true,
+      sameSite: "none",
+      path: "/",
       expires: new Date(jwtDecode(token).exp! * 1000),
     });
     cookies().set({
@@ -42,6 +73,8 @@ const setAuthCookie = (response: Response) => {
       value: token,
       secure: true,
       httpOnly: true,
+      sameSite: "none",
+      path: "/",
       expires: new Date(jwtDecode(token).exp! * 1000),
     });
   }

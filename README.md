@@ -1,36 +1,145 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NexaManga Frontend
 
-## Getting Started
+A modern manga reader web application built with Next.js, offering a seamless reading experience with features like continuous scrolling, chapter navigation, and bookmarking.
 
-First, run the development server:
+## Features
 
+- 📱 Responsive design for all devices
+- 📖 Continuous scroll reading mode
+- 🔖 Bookmark favorite manga
+- 🎨 Custom theme support
+- 🔍 Advanced search functionality
+- 📱 PWA support for mobile installation
+- 🚀 Fast image loading with optimization
+- 📑 Chapter progress tracking
+
+## Tech Stack
+
+- [Next.js](https://nextjs.org/) - React framework
+- [TypeScript](https://www.typescriptlang.org/) - Type safety
+- [Tailwind CSS](https://tailwindcss.com/) - Styling
+- [SWR](https://swr.vercel.app/) - Data fetching
+- [Shadcn/ui](https://ui.shadcn.com/) - UI components
+
+## Prerequisites
+
+Before you begin, ensure you have installed:
+- Node.js (v16 or higher)
+- npm or yarn package manager
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/Sila030446/nexamanga.git
+cd nexamanga/frontend
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Create a `.env.local` file in the root directory:
+```env
+NEXT_PUBLIC_API_URL=your_backend_api_url
+```
+
+4. Start the development server:
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will be available at `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+frontend/
+├── components/         # Reusable UI components
+├── app/             # Next.js pages and API routes
+├── public/            # Static assets
+├── styles/            # Global styles and Tailwind config
+├── lib/              # Utility functions and helpers
+├── types/            # TypeScript type definitions
+└── contexts/         # React context providers
+```
 
-## Learn More
+## Available Scripts
 
-To learn more about Next.js, take a look at the following resources:
+- `npm run dev` - Start development server
+- `npm run build` - Build production bundle
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run test` - Run tests
+- `npm run type-check` - Run TypeScript compiler
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Configuration
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Environment Variables
 
-## Deploy on Vercel
+Create a `.env.local` file with the following variables:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```env
+NEXT_PUBLIC_API_URL=your_backend_api_url
+NEXT_PUBLIC_SITE_URL=your_frontend_url
+NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=your_ga_id
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Tailwind Configuration
+
+Customize the `tailwind.config.js` file to modify the theme:
+
+```javascript
+module.exports = {
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}'
+  ],
+  theme: {
+    extend: {
+      // Your custom theme configurations
+    }
+  },
+  plugins: []
+}
+```
+
+## API Integration
+
+The frontend communicates with the backend API using the following endpoints:
+
+- `/api/manga` - Get manga list
+- `/api/manga/[id]` - Get manga details
+- `/api/chapter/[id]` - Get chapter content
+- `/api/user/bookmarks` - Manage user bookmarks
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Thanks to all contributors who have helped with the project
+- Special thanks to the manga community for their support
+
+## Contact
+
+- GitHub: [@Sila030446](https://github.com/Sila030446)
+- Project Link: [https://github.com/Sila030446/nexamanga](https://github.com/Sila030446/nexamanga)
+
+## Support
+
+If you find this project helpful, please consider giving it a ⭐️ on GitHub!

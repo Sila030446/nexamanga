@@ -21,7 +21,7 @@ const AllGenres = async () => {
             <Link
               key={genre.id}
               className="hover:underline"
-              href={`/genre/${genre.slug}`}
+              href={`/genre/${genre.name}`}
             >
               <div>
                 <p className="text-base line-clamp-1">{genre.name}</p>

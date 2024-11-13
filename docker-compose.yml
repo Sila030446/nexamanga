@@ -1,13 +1,17 @@
+version: '3.8'
+
 services:
   nextjs-app:
-    image: nexamanga.azurecr.io/nexamaga:v1.0
-    container_name: nextjs-app
+    build:
+      context: .               # Specifies the build context (current directory)
+      dockerfile: Dockerfile   # Optional if Dockerfile is named 'Dockerfile'
+    container_name: nexamanga-app
     restart: unless-stopped
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=production
-      - API_URL=https:api.nexamanga.online
+      - API_URL=https://api.nexamanga.online
     networks:
       - app-network
     volumes:

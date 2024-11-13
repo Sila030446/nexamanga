@@ -35,6 +35,11 @@ const Navbar = () => {
       icon: <FaBookJournalWhills className="w-4 h-4" />,
       label: "อ่านมังงะ",
     },
+    {
+      href: "/category/manhua",
+      icon: <FaBookJournalWhills className="w-4 h-4" />,
+      label: "อ่านมังฮัว",
+    },
   ];
 
   return (
@@ -100,6 +105,14 @@ const Navbar = () => {
                   className="text-base font-semibold text-muted-foreground"
                 >
                   อ่านมังฮวา
+                </Button>
+              </Link>
+              <Link href="/category/manhua">
+                <Button
+                  variant="ghost"
+                  className="text-base font-semibold text-muted-foreground"
+                >
+                  อ่านมังฮัว
                 </Button>
               </Link>
               {authenticated && (

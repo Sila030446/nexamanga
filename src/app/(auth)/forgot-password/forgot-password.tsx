@@ -1,12 +1,13 @@
 "use server";
 import API_URL from "@/common/constants/api";
-import { FormState, SignupFormSchema } from "@/lib/type";
+import { FormState, ForgotPasswordSchema } from "@/lib/type";
 
-export default async function createUser(state: FormState, formData: FormData) {
-  const validationFields = SignupFormSchema.safeParse({
-    name: formData.get("name"),
+export default async function forgotPassword(
+  state: FormState,
+  formData: FormData
+) {
+  const validationFields = ForgotPasswordSchema.safeParse({
     email: formData.get("email"),
-    password: formData.get("password"),
   });
   if (!validationFields.success) {
     return {
@@ -14,7 +15,7 @@ export default async function createUser(state: FormState, formData: FormData) {
     };
   }
 
-  const response = await fetch(`${API_URL}/user`, {
+  const response = await fetch(`${API_URL}/auth/forgot-password`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(validationFields.data),
@@ -26,8 +27,8 @@ export default async function createUser(state: FormState, formData: FormData) {
   } else
     return {
       message:
-        response.status === 422
-          ? "อีเมลนี้มีอยู่ในระบบแล้ว"
+        response.status === 404
+          ? "อีเมลนี้ไม่มีอยู่ในระบบ"
           : response.statusText,
     };
 }

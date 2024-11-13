@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { CurrentChapter } from "@/types/mangaChapter.type";
 import Image from "next/image";
@@ -29,10 +28,8 @@ const MangaChapterContent: React.FC<MangaChapterContentProps> = ({
                   <Image
                     src={page.imageUrl}
                     alt={`Page ${page.pageNumber}`}
-                    width={896}
-                    height={1000}
-                    quality={100}
                     loading="lazy"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="w-full h-full object-cover"
                   />
                 </div>
