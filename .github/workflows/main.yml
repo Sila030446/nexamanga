@@ -2,9 +2,9 @@ name: สร้าง Docker Image และติดตั้ง
 
 on:
   push:
-    branches: [ "dev" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "dev" ]
+    branches: [ "master" ]
 
 jobs:
 
