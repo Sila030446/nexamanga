@@ -29,7 +29,6 @@ const MangaChapterContent: React.FC<MangaChapterContentProps> = ({
                     src={page.imageUrl}
                     alt={`Page ${page.pageNumber}`}
                     unoptimized
-                    loading="lazy" 
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="w-full h-full object-cover"
                   />
