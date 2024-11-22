@@ -11,9 +11,10 @@ export async function GET(request: NextRequest) {
 
     // Validate tokens (you should add more robust validation)
     if (!accessToken || !refreshToken) {
-        return NextResponse.redirect(new URL('/login', request.url), {
-            status: 302,
-        });
+        return NextResponse.redirect(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/login`,
+            { status: 302 }
+        );
     }
 
     try {
@@ -39,15 +40,17 @@ export async function GET(request: NextRequest) {
         });
 
         // Redirect to a protected route or dashboard
-        return NextResponse.redirect(new URL('/', request.url), {
-            status: 302,
-        });
+        return NextResponse.redirect(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/`,
+            { status: 302 }
+        );
     } catch (error) {
         console.error('Authentication error:', error);
 
         // Handle error scenario
-        return NextResponse.redirect(new URL('/login?error=auth_failed', request.url), {
-            status: 302,
-        });
+        return NextResponse.redirect(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/login?error=auth_failed`,
+            { status: 302 }
+        );
     }
 }

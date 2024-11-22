@@ -1,10 +1,6 @@
-version: '3.8'
-
 services:
   nextjs-app:
-    build:
-      context: .               # Specifies the build context (current directory)
-      dockerfile: Dockerfile   # Optional if Dockerfile is named 'Dockerfile'
+    image: sila030446/nexamanga-frontend:latest
     container_name: nexamanga-app
     restart: unless-stopped
     ports:
